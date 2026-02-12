@@ -1,0 +1,32 @@
+export const REQUIRED_NODE_IDS = [
+  "N01_Orientation",
+  "N02_NameProbe",
+  "N03_BreathInvite",
+  "N04_ContradictionProbe",
+  "N05_FearProbe",
+  "N06_HumorDeflect",
+  "N07_SilencePressure",
+  "N08_MirrorManifest",
+  "N09_QuoteRecall",
+  "N10_DoorOutlineHint",
+  "N11_BargainOffer",
+  "N12_BoundaryTest",
+  "N13_GuidedSequence",
+  "N14_FinalQuestion",
+  "N15_ResolveEnding",
+] as const;
+
+export const REQUIRED_RECIPE_IDS = [
+  "R01_ClinicalBaseline",
+  "R02_OverexposedDrift",
+  "R03_HarshToplight",
+  "R04_SoftHalo",
+  "R05_MirrorPresence",
+  "R06_DoorlineReveal",
+  "R07_EyeGlowPulse",
+  "R08_CornerBreath",
+  "R09_AudioVacuum",
+  "R10_ParallaxSlip",
+  "R11_SubtitleGhosting",
+  "R12_ShadowLag",
+] as const;

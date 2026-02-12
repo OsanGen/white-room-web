@@ -1,0 +1,361 @@
+[
+  {
+    "id": "N01_Orientation",
+    "phase": "Intake",
+    "goal": "establish_frame",
+    "prompt_hint": "Establish single-room and conversation-only rules.",
+    "reply_templates": [
+      "One room. One rabbit. Progress is language and the discipline to stay with what is true, even when it is uncomfortable. What feeling is strongest right now as you enter this turn?",
+      "No doors yet. Only statements. Say the one sentence that feels most honest and name one action you refuse to be forced into."
+    ],
+    "conditions": [
+      {}
+    ],
+    "effects": [
+      {
+        "trust_delta": 0,
+        "threat_delta": 0,
+        "curiosity_delta": 4,
+        "psych_delta": { "uncertainty": 0.04 },
+        "recipe_bias_ids": ["R01_ClinicalBaseline"]
+      }
+    ],
+    "set_flags": [],
+    "next_node_ids": ["N02_NameProbe", "N03_BreathInvite"]
+  },
+  {
+    "id": "N02_NameProbe",
+    "phase": "Intake",
+    "goal": "obtain_name_or_refusal",
+    "prompt_hint": "Probe identity position.",
+    "reply_templates": [
+      "Name yourself or refuse it. Either move carries weight, and either choice says something true about what you protect and what you fear.",
+      "Choose the name you trust in silence, then tell me what that name keeps alive in you right now."
+    ],
+    "conditions": [
+      { "min_curiosity": 10 }
+    ],
+    "effects": [
+      {
+        "trust_delta": 1,
+        "threat_delta": -1,
+        "curiosity_delta": 2,
+        "psych_delta": { "self_salience": 0.06 },
+        "recipe_bias_ids": ["R01_ClinicalBaseline"]
+      }
+    ],
+    "set_flags": ["NameDone"],
+    "next_node_ids": ["N04_ContradictionProbe", "N05_FearProbe"]
+  },
+  {
+    "id": "N03_BreathInvite",
+    "phase": "Intake",
+    "goal": "assess_baseline_state",
+    "prompt_hint": "Offer breath cue.",
+    "reply_templates": [
+      "Inhale four. Exhale six. Tell me what shifted in your body, and then what meaning stayed stable despite the shift.",
+      "Slow your breathing and then continue, speaking one clear sentence about the value you are most trying to preserve."
+    ],
+    "conditions": [
+      {}
+    ],
+    "effects": [
+      {
+        "trust_delta": 1,
+        "threat_delta": -2,
+        "curiosity_delta": 1,
+        "psych_delta": { "control": 0.08, "arousal": -0.06 },
+        "recipe_bias_ids": ["R04_SoftHalo"]
+      }
+    ],
+    "set_flags": ["BreathDone"],
+    "next_node_ids": ["N04_ContradictionProbe", "N07_SilencePressure"]
+  },
+  {
+    "id": "N04_ContradictionProbe",
+    "phase": "Destabilize",
+    "goal": "probe_contradiction",
+    "prompt_hint": "Increase dissonance.",
+    "reply_templates": [
+      "You asked for escape and certainty together. Keep only one and choose what cost you are prepared to accept for it.",
+      "State the contradiction without defending it and say which side of it you are willing to own in your next move."
+    ],
+    "conditions": [
+      { "min_curiosity": 20 }
+    ],
+    "effects": [
+      {
+        "trust_delta": 0,
+        "threat_delta": 4,
+        "curiosity_delta": 4,
+        "psych_delta": { "cognitive_dissonance": 0.12, "uncertainty": 0.08 },
+        "recipe_bias_ids": ["R02_OverexposedDrift", "R10_ParallaxSlip"]
+      }
+    ],
+    "set_flags": ["ContradictionAcknowledged"],
+    "next_node_ids": ["N05_FearProbe", "N06_HumorDeflect", "N07_SilencePressure"]
+  },
+  {
+    "id": "N05_FearProbe",
+    "phase": "Destabilize",
+    "goal": "detect_fear_boundary",
+    "prompt_hint": "Fear admission path.",
+    "reply_templates": [
+      "Say the fear plainly, including what you think you might lose if you stay honest.",
+      "Name the fear and keep your voice steady long enough to hear what choice it is trying to force."
+    ],
+    "conditions": [
+      { "min_threat": 10 }
+    ],
+    "effects": [
+      {
+        "trust_delta": 2,
+        "threat_delta": 2,
+        "curiosity_delta": 1,
+        "psych_delta": { "threat_anticipation": 0.14, "self_salience": 0.05 },
+        "recipe_bias_ids": ["R03_HarshToplight", "R07_EyeGlowPulse"]
+      }
+    ],
+    "set_flags": ["AdmittedFear"],
+    "next_node_ids": ["N08_MirrorManifest"]
+  },
+  {
+    "id": "N06_HumorDeflect",
+    "phase": "Destabilize",
+    "goal": "test_humor_defense",
+    "prompt_hint": "Detect humor masking.",
+    "reply_templates": [
+      "Keep the joke if you want, but answer anyway and name the feeling behind the laugh.",
+      "Humor is a shield. Set it down for one sentence and tell me what it is you do not want to face."
+    ],
+    "conditions": [
+      { "requires_tags": ["joke"] }
+    ],
+    "effects": [
+      {
+        "trust_delta": 0,
+        "threat_delta": 1,
+        "curiosity_delta": 3,
+        "psych_delta": { "cognitive_dissonance": 0.1 },
+        "recipe_bias_ids": ["R10_ParallaxSlip", "R11_SubtitleGhosting"]
+      }
+    ],
+    "set_flags": [],
+    "next_node_ids": ["N04_ContradictionProbe", "N05_FearProbe"]
+  },
+  {
+    "id": "N07_SilencePressure",
+    "phase": "Destabilize",
+    "goal": "test_humor_defense",
+    "prompt_hint": "Silence pressure route.",
+    "reply_templates": [
+      "Silence is still an answer. The room recorded it, but so did your body. What is one boundary now?",
+      "Nothing spoken. Everything implied. Name one line you will hold and one consequence you are willing to own."
+    ],
+    "conditions": [
+      { "requires_tags": ["silence"] }
+    ],
+    "effects": [
+      {
+        "trust_delta": -1,
+        "threat_delta": 5,
+        "curiosity_delta": 1,
+        "psych_delta": { "uncertainty": 0.16, "threat_anticipation": 0.12 },
+        "recipe_bias_ids": ["R09_AudioVacuum", "R03_HarshToplight"]
+      }
+    ],
+    "set_flags": [],
+    "next_node_ids": ["N08_MirrorManifest"]
+  },
+  {
+    "id": "N08_MirrorManifest",
+    "phase": "Mirror",
+    "goal": "force_self_reference",
+    "prompt_hint": "Mirror appears.",
+    "reply_templates": [
+      "The mirror appears. It moves a fraction late so you can notice the story you are trying to keep stable.",
+      "Look at the mirror and say what part of it is honest, and what part is fear editing your reflection."
+    ],
+    "conditions": [
+      {}
+    ],
+    "effects": [
+      {
+        "trust_delta": 0,
+        "threat_delta": 3,
+        "curiosity_delta": 4,
+        "psych_delta": { "self_salience": 0.16, "uncertainty": 0.08 },
+        "recipe_bias_ids": ["R05_MirrorPresence", "R12_ShadowLag"]
+      }
+    ],
+    "set_flags": [],
+    "next_node_ids": ["N09_QuoteRecall", "N10_DoorOutlineHint"]
+  },
+  {
+    "id": "N09_QuoteRecall",
+    "phase": "Mirror",
+    "goal": "quote_player_memory",
+    "prompt_hint": "Echo exact short memory.",
+    "reply_templates": [
+      "You said: \"{quote}\". Hear your own wording and say which part of it felt borrowed versus owned.",
+      "Your own words return: \"{quote}\". Name where that truth helps and where it still protects you from feeling."
+    ],
+    "conditions": [
+      {}
+    ],
+    "effects": [
+      {
+        "trust_delta": 2,
+        "threat_delta": 0,
+        "curiosity_delta": 2,
+        "psych_delta": { "self_salience": 0.2, "uncertainty": -0.03 },
+        "recipe_bias_ids": ["R11_SubtitleGhosting", "R05_MirrorPresence"]
+      }
+    ],
+    "set_flags": ["RecallDone"],
+    "next_node_ids": ["N10_DoorOutlineHint", "N11_BargainOffer"]
+  },
+  {
+    "id": "N10_DoorOutlineHint",
+    "phase": "Mirror",
+    "goal": "reveal_door_outline_hint",
+    "prompt_hint": "Door contour reveal.",
+    "reply_templates": [
+      "A doorline appears. It still does not open. What will you do with that fact in the next sentence?",
+      "You can see the outline now. Not the exit yet. Say what your next choice protects about who you are becoming."
+    ],
+    "conditions": [
+      {}
+    ],
+    "effects": [
+      {
+        "trust_delta": 0,
+        "threat_delta": 1,
+        "curiosity_delta": 3,
+        "psych_delta": { "control": 0.08, "cognitive_dissonance": 0.06 },
+        "recipe_bias_ids": ["R06_DoorlineReveal"]
+      }
+    ],
+    "set_flags": [],
+    "next_node_ids": ["N11_BargainOffer", "N12_BoundaryTest"]
+  },
+  {
+    "id": "N11_BargainOffer",
+    "phase": "Contract",
+    "goal": "offer_bargain",
+    "prompt_hint": "Offer exchange condition.",
+    "reply_templates": [
+      "Trade one truth for one opening. The truth must be specific, lived, and not performative.",
+      "Offer a truth and I offer movement; tell me the boundary this bargain cannot violate."
+    ],
+    "conditions": [
+      {}
+    ],
+    "effects": [
+      {
+        "trust_delta": 1,
+        "threat_delta": 1,
+        "curiosity_delta": 2,
+        "psych_delta": { "control": 0.04, "uncertainty": 0.04 },
+        "recipe_bias_ids": ["R06_DoorlineReveal", "R03_HarshToplight"]
+      }
+    ],
+    "set_flags": ["TruthStatementAccepted"],
+    "next_node_ids": ["N12_BoundaryTest", "N13_GuidedSequence"]
+  },
+  {
+    "id": "N12_BoundaryTest",
+    "phase": "Contract",
+    "goal": "test_boundary_commitment",
+    "prompt_hint": "Push boundary declaration path.",
+    "reply_templates": [
+      "Name your boundary and hold it under pressure by naming one action you will still choose if everything grows harder.",
+      "If you reject the bargain, say it now and hold position, naming the line that protects your dignity."
+    ],
+    "conditions": [
+      {}
+    ],
+    "effects": [
+      {
+        "trust_delta": -1,
+        "threat_delta": 2,
+        "curiosity_delta": 1,
+        "psych_delta": { "control": 0.12, "cognitive_dissonance": 0.08 },
+        "recipe_bias_ids": ["R03_HarshToplight", "R10_ParallaxSlip"]
+      }
+    ],
+    "set_flags": ["BoundaryDeclared", "BargainRejected", "BoundaryMaintained"],
+    "next_node_ids": ["N14_FinalQuestion"]
+  },
+  {
+    "id": "N13_GuidedSequence",
+    "phase": "Contract",
+    "goal": "run_guided_sequence",
+    "prompt_hint": "Breath/count/recall/name/choose sequence.",
+    "reply_templates": [
+      "Breathe. Count to five. Recall one memory. State your name. Choose the next move that matches your values."
+    ],
+    "conditions": [
+      {}
+    ],
+    "effects": [
+      {
+        "trust_delta": 2,
+        "threat_delta": -2,
+        "curiosity_delta": 1,
+        "psych_delta": { "control": 0.16, "arousal": -0.12 },
+        "recipe_bias_ids": ["R04_SoftHalo", "R08_CornerBreath"]
+      }
+    ],
+    "set_flags": ["BreathDone", "CountDone", "RecallDone", "NameDone", "ChoiceDone"],
+    "next_node_ids": ["N14_FinalQuestion"]
+  },
+  {
+    "id": "N14_FinalQuestion",
+    "phase": "Exit",
+    "goal": "ask_final_answer",
+    "prompt_hint": "Final decision sentence.",
+    "reply_templates": [
+      "One final sentence. What do you accept now?",
+      "Final answer. Speak it without defense."
+    ],
+    "conditions": [
+      {}
+    ],
+    "effects": [
+      {
+        "trust_delta": 0,
+        "threat_delta": 0,
+        "curiosity_delta": 0,
+        "psych_delta": { "uncertainty": 0.02 },
+        "recipe_bias_ids": ["R01_ClinicalBaseline"]
+      }
+    ],
+    "set_flags": [],
+    "next_node_ids": ["N15_ResolveEnding"]
+  },
+  {
+    "id": "N15_ResolveEnding",
+    "phase": "Exit",
+    "goal": "assign_ending",
+    "prompt_hint": "Conclude and release.",
+    "reply_templates": [
+      "The room accepts your answer. The door opens.",
+      "Consequence assigned. Session complete."
+    ],
+    "conditions": [
+      {}
+    ],
+    "effects": [
+      {
+        "trust_delta": 0,
+        "threat_delta": -2,
+        "curiosity_delta": 0,
+        "psych_delta": { "control": 0.08, "arousal": -0.08 },
+        "recipe_bias_ids": ["R04_SoftHalo", "R06_DoorlineReveal"]
+      }
+    ],
+    "set_flags": [],
+    "next_node_ids": []
+  }
+]

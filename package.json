@@ -1,0 +1,41 @@
+{
+  "name": "white-room-web",
+  "private": true,
+  "version": "5.0.0",
+  "workspaces": [
+    "client",
+    "server",
+    "shared",
+    "bridge"
+  ],
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:server dev:client",
+    "dev:oss": "bash scripts/start-open-source-stack.sh",
+    "dev:bridge": "npm --workspace bridge run dev",
+    "dev:client": "npm --workspace client run dev",
+    "dev:server": "npm --workspace server run dev",
+    "build": "npm-run-all build:shared build:server build:client build:bridge",
+    "build:shared": "npm --workspace shared run build",
+    "build:server": "npm --workspace server run build",
+    "build:client": "npm --workspace client run build",
+    "build:bridge": "npm --workspace bridge run build",
+    "preview": "npm --workspace client run preview",
+    "test": "npm-run-all build:shared test:shared test:server test:client",
+    "test:shared": "npm --workspace shared run test",
+    "test:server": "npm --workspace server run test",
+    "test:client": "npm --workspace client run test",
+    "verify:spec": "node scripts/verify-spec.mjs",
+    "setup:oss": "bash scripts/setup-open-source.sh",
+    "check:runtime": "bash scripts/check-open-source-runtime.sh",
+    "stop:oss": "bash scripts/stop-open-source-stack.sh",
+    "release:package": "node scripts/package-release.mjs",
+    "lint": "npm-run-all build:shared lint:shared lint:server lint:client lint:bridge",
+    "lint:shared": "npm --workspace shared run lint",
+    "lint:server": "npm --workspace server run lint",
+    "lint:client": "npm --workspace client run lint",
+    "lint:bridge": "npm --workspace bridge run lint"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

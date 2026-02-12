@@ -1,0 +1,158 @@
+[
+  {
+    "id": "R01_ClinicalBaseline",
+    "duration_ms": 1400,
+    "intensity": 1,
+    "weight_curve": "EASE_IN_OUT",
+    "channels": {
+      "light": { "exposure": 0.42, "toplight": 0.2, "halo": 0.2 },
+      "geometry": { "skew": 0.05, "wave": 0.04 },
+      "props": { "mirror": 0, "doorline": 0, "eyes": 0.25 },
+      "audio": { "heartbeat": 0.05, "hum": 0.1 },
+      "ui": { "vignette": 0.08, "jitter": 0, "chroma": 0 }
+    }
+  },
+  {
+    "id": "R02_OverexposedDrift",
+    "duration_ms": 2200,
+    "intensity": 0.85,
+    "weight_curve": "EASE_IN_OUT",
+    "channels": {
+      "light": { "exposure": 0.55, "toplight": 0.25, "halo": 0.2 },
+      "geometry": { "skew": 0.2, "wave": 0.15 },
+      "props": { "mirror": 0.1, "doorline": 0, "eyes": 0.35 },
+      "audio": { "heartbeat": 0.18, "hum": 0.22 },
+      "ui": { "vignette": 0.22, "jitter": 0.14, "chroma": 0.1 }
+    }
+  },
+  {
+    "id": "R03_HarshToplight",
+    "duration_ms": 1100,
+    "intensity": 0.9,
+    "weight_curve": "SPIKE",
+    "channels": {
+      "light": { "exposure": 0.52, "toplight": 0.55, "halo": 0.12 },
+      "geometry": { "skew": 0.3, "wave": 0.22 },
+      "props": { "mirror": 0.1, "doorline": 0.1, "eyes": 0.5 },
+      "audio": { "heartbeat": 0.45, "hum": 0.2 },
+      "ui": { "vignette": 0.35, "jitter": 0.25, "chroma": 0.2 }
+    }
+  },
+  {
+    "id": "R04_SoftHalo",
+    "duration_ms": 1800,
+    "intensity": 0.8,
+    "weight_curve": "EASE_OUT",
+    "channels": {
+      "light": { "exposure": 0.38, "toplight": 0.15, "halo": 0.42 },
+      "geometry": { "skew": 0.08, "wave": 0.06 },
+      "props": { "mirror": 0.35, "doorline": 0.25, "eyes": 0.2 },
+      "audio": { "heartbeat": 0.1, "hum": 0.12 },
+      "ui": { "vignette": 0.12, "jitter": 0.04, "chroma": 0.02 }
+    }
+  },
+  {
+    "id": "R05_MirrorPresence",
+    "duration_ms": 1900,
+    "intensity": 1,
+    "weight_curve": "EASE_IN",
+    "channels": {
+      "light": { "exposure": 0.48, "toplight": 0.32, "halo": 0.2 },
+      "geometry": { "skew": 0.2, "wave": 0.16 },
+      "props": { "mirror": 1, "doorline": 0.3, "eyes": 0.45 },
+      "audio": { "heartbeat": 0.32, "hum": 0.28 },
+      "ui": { "vignette": 0.24, "jitter": 0.22, "chroma": 0.18 }
+    }
+  },
+  {
+    "id": "R06_DoorlineReveal",
+    "duration_ms": 1600,
+    "intensity": 1,
+    "weight_curve": "EASE_IN_OUT",
+    "channels": {
+      "light": { "exposure": 0.44, "toplight": 0.2, "halo": 0.35 },
+      "geometry": { "skew": 0.12, "wave": 0.08 },
+      "props": { "mirror": 0.5, "doorline": 1, "eyes": 0.4 },
+      "audio": { "heartbeat": 0.2, "hum": 0.16 },
+      "ui": { "vignette": 0.18, "jitter": 0.08, "chroma": 0.04 }
+    }
+  },
+  {
+    "id": "R07_EyeGlowPulse",
+    "duration_ms": 900,
+    "intensity": 0.9,
+    "weight_curve": "SPIKE",
+    "channels": {
+      "light": { "exposure": 0.5, "toplight": 0.4, "halo": 0.15 },
+      "geometry": { "skew": 0.15, "wave": 0.12 },
+      "props": { "mirror": 0.2, "doorline": 0.2, "eyes": 1 },
+      "audio": { "heartbeat": 0.4, "hum": 0.2 },
+      "ui": { "vignette": 0.24, "jitter": 0.18, "chroma": 0.12 }
+    }
+  },
+  {
+    "id": "R08_CornerBreath",
+    "duration_ms": 2200,
+    "intensity": 0.7,
+    "weight_curve": "EASE_IN_OUT",
+    "channels": {
+      "light": { "exposure": 0.4, "toplight": 0.16, "halo": 0.3 },
+      "geometry": { "skew": 0.1, "wave": 0.06 },
+      "props": { "mirror": 0.4, "doorline": 0.35, "eyes": 0.3 },
+      "audio": { "heartbeat": 0.12, "hum": 0.14 },
+      "ui": { "vignette": 0.1, "jitter": 0.05, "chroma": 0 }
+    }
+  },
+  {
+    "id": "R09_AudioVacuum",
+    "duration_ms": 1400,
+    "intensity": 0.9,
+    "weight_curve": "SPIKE",
+    "channels": {
+      "light": { "exposure": 0.35, "toplight": 0.3, "halo": 0.1 },
+      "geometry": { "skew": 0.14, "wave": 0.1 },
+      "props": { "mirror": 0.2, "doorline": 0.1, "eyes": 0.45 },
+      "audio": { "heartbeat": 0.5, "hum": 0.05 },
+      "ui": { "vignette": 0.3, "jitter": 0.2, "chroma": 0.08 }
+    }
+  },
+  {
+    "id": "R10_ParallaxSlip",
+    "duration_ms": 1200,
+    "intensity": 0.8,
+    "weight_curve": "EASE_IN",
+    "channels": {
+      "light": { "exposure": 0.45, "toplight": 0.28, "halo": 0.2 },
+      "geometry": { "skew": 0.28, "wave": 0.22 },
+      "props": { "mirror": 0.35, "doorline": 0.2, "eyes": 0.45 },
+      "audio": { "heartbeat": 0.25, "hum": 0.2 },
+      "ui": { "vignette": 0.24, "jitter": 0.22, "chroma": 0.14 }
+    }
+  },
+  {
+    "id": "R11_SubtitleGhosting",
+    "duration_ms": 1000,
+    "intensity": 0.75,
+    "weight_curve": "LINEAR",
+    "channels": {
+      "light": { "exposure": 0.46, "toplight": 0.24, "halo": 0.22 },
+      "geometry": { "skew": 0.18, "wave": 0.12 },
+      "props": { "mirror": 0.4, "doorline": 0.25, "eyes": 0.42 },
+      "audio": { "heartbeat": 0.2, "hum": 0.2 },
+      "ui": { "vignette": 0.2, "jitter": 0.3, "chroma": 0.16 }
+    }
+  },
+  {
+    "id": "R12_ShadowLag",
+    "duration_ms": 2000,
+    "intensity": 0.85,
+    "weight_curve": "EASE_OUT",
+    "channels": {
+      "light": { "exposure": 0.44, "toplight": 0.34, "halo": 0.16 },
+      "geometry": { "skew": 0.24, "wave": 0.18 },
+      "props": { "mirror": 0.5, "doorline": 0.3, "eyes": 0.5 },
+      "audio": { "heartbeat": 0.3, "hum": 0.24 },
+      "ui": { "vignette": 0.28, "jitter": 0.26, "chroma": 0.18 }
+    }
+  }
+]

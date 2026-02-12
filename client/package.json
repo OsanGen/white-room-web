@@ -1,0 +1,23 @@
+{
+  "name": "@white-room/client",
+  "version": "5.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "lint": "tsc -p tsconfig.app.json --noEmit"
+  },
+  "dependencies": {
+    "@white-room/shared": "5.0.0",
+    "three": "^0.174.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/three": "^0.174.0",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.1",
+    "vitest": "^2.1.9"
+  }
+}

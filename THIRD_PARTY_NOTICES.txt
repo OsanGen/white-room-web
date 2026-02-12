@@ -1,0 +1,39 @@
+THIRD PARTY NOTICES
+===================
+
+This project uses or is designed to interoperate with third-party software.
+Review and comply with each upstream license before redistribution.
+
+- Three.js
+  URL: https://github.com/mrdoob/three.js
+  License: MIT
+
+- Express
+  URL: https://github.com/expressjs/express
+  License: MIT
+
+- Zod
+  URL: https://github.com/colinhacks/zod
+  License: MIT
+
+- Ollama
+  URL: https://github.com/ollama/ollama
+  License: MIT
+
+- whisper.cpp
+  URL: https://github.com/ggml-org/whisper.cpp
+  License: MIT
+
+- llama.cpp
+  URL: https://github.com/ggml-org/llama.cpp
+  License: MIT
+
+- Piper TTS
+  URL: https://github.com/OHF-Voice/piper1-gpl
+  License: see upstream repository (GPL branch)
+
+- eSpeak NG
+  URL: https://github.com/espeak-ng/espeak-ng
+  License: GPL-3.0
+
+You are responsible for verifying model file licenses and distribution terms for all downloaded model weights.

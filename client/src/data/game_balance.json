@@ -1,0 +1,36 @@
+{
+  "session_hard_limit_ms": 300000,
+  "forced_final_branch_at_ms": 270000,
+  "windows": {
+    "Intake": [0, 60000],
+    "Destabilize": [60000, 160000],
+    "Mirror": [160000, 230000],
+    "Contract": [230000, 280000],
+    "Exit": [280000, 300000]
+  },
+  "turn_target_count": 12,
+  "turn_hard_cap": 20,
+  "turn_soft_cap": 14,
+  "average_turn_budget_ms": 18000,
+  "stt_failure_fallback_threshold": 2,
+  "llm_timeout_ms": 5000,
+  "stt_timeout_ms": 5000,
+  "tts_timeout_ms": 2500,
+  "fallback_after_reject_count": 3,
+  "safety_caps_default": {
+    "chroma_max": 0.35,
+    "vignette_max": 0.65,
+    "jitter_max": 0.45,
+    "geom_skew_max": 0.7,
+    "exposure_pulse_max": 0.55,
+    "heartbeat_gain_max": 0.7
+  },
+  "safety_caps_calm": {
+    "chroma_max": 0,
+    "vignette_max": 0.4,
+    "jitter_max": 0.18,
+    "geom_skew_max": 0.35,
+    "exposure_pulse_max": 0.25,
+    "heartbeat_gain_max": 0.35
+  }
+}

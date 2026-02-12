@@ -1,0 +1,10 @@
+node_modules
+dist
+release
+coverage
+.env
+.DS_Store
+*.log
+client/dist
+client/dist-types
+client/tsconfig.app.tsbuildinfo
