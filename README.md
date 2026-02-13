@@ -78,6 +78,36 @@ If disconnected:
 - Run the refreshed bridge command from the UI hint
 - Game auto-degrades to hosted/deterministic path while bridge is offline
 
+## Live Deployment: GitHub Pages
+
+GitHub Pages can host a playable UI instantly and can be reached by anyone through a public link:
+
+- `client` is compiled to static assets and deployed under GitHub Pages
+- runtime API calls are configurable to a live server via `VITE_API_BASE_URL`
+- on hosted pages, API endpoints are not localhost-bound
+
+Quick setup:
+
+```bash
+# 1) Push this branch to GitHub
+git add .
+git commit -m "Deploy static client"
+git push
+
+# 2) Configure repo variable (GitHub Settings > Secrets and variables > Variables)
+VITE_API_BASE_URL=https://your-api-host.example
+
+# 3) Push to main or codex/github-push to trigger workflow
+#    The workflow publishes client/dist to GitHub Pages.
+```
+
+Important note:
+
+- GitHub Pages is static-only. LLM/STT/TTS/bridge features still require a separately hosted backend server.
+- If the backend variable is missing, the page falls back to same-origin `/api/*` calls and most AI features will not work unless API is same-origin.
+
+If you want full-stack one-link deployment, deploy the server side separately (Render/Fly/Railway/etc.) and set `VITE_API_BASE_URL` to that server URL.
+
 ## Reliability Defaults
 
 From `.env.example`:

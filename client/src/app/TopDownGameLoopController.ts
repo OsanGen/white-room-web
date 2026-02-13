@@ -1860,7 +1860,7 @@ export class TopDownGameLoopController {
 
   private async refreshHealth(): Promise<void> {
     try {
-      const res = await fetch("/api/health");
+      const res = await fetch(runtimeTransport.getApiUrl("/api/health"));
       if (!res.ok) return;
       const data = (await res.json()) as {
         providers?: {

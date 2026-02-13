@@ -58,7 +58,7 @@ export class InputController {
     try {
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 5000);
-      const res = await fetch("/api/stt", {
+      const res = await fetch(runtimeTransport.getApiUrl("/api/stt"), {
         method: "POST",
         headers: runtimeTransport.getBridgeHeaders(),
         body: form,

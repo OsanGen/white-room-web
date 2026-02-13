@@ -30,6 +30,37 @@ interface SessionStatusResponse {
 const STORAGE_CHOICE_KEY = "wr_runtime_choice";
 const STORAGE_SESSION_KEY = "wr_bridge_session";
 const hasWindow = typeof window !== "undefined" && typeof window.localStorage !== "undefined";
+const apiBase = (() => {
+  const raw = typeof import.meta !== "undefined" ? import.meta.env.VITE_API_BASE_URL : "";
+  if (!raw || typeof raw !== "string") return "";
+  const trimmed = raw.trim();
+  if (!trimmed) return "";
+  if (trimmed.startsWith("/")) {
+    return trimmed.replace(/\/+$/, "");
+  }
+  if (/^https?:\/\//i.test(trimmed)) {
+    return trimmed.replace(/\/+$/, "");
+  }
+  return `/${trimmed.replace(/^\/+/, "").replace(/\/+$/, "")}`;
+})();
+
+function resolveApiUrl(base: string, path: string): string {
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  if (!base) return normalizedPath;
+  return `${base}${normalizedPath}`;
+}
+
+function resolveBridgeServerOrigin(base: string): string {
+  if (!hasWindow) return "";
+  if (!base || base.startsWith("/")) {
+    return window.location.origin;
+  }
+  try {
+    return new URL(base).origin;
+  } catch {
+    return window.location.origin;
+  }
+}
 
 function parseStoredSession(raw: string | null): BridgeSessionState | null {
   if (!raw) return null;
@@ -112,7 +143,7 @@ export class RuntimeTransport {
       return { ok: false };
     }
     try {
-      const res = await fetch("/api/bridge/session", {
+      const res = await fetch(this.getApiUrl("/api/bridge/session"), {
         method: "POST",
         headers: { "content-type": "application/json" },
       });
@@ -134,7 +165,7 @@ export class RuntimeTransport {
       };
       this.persistBridge();
 
-      const wsOrigin = window.location.origin.replace(/^http/, "ws");
+      const wsOrigin = this.getBridgeServerOrigin().replace(/^http/, "ws");
       const command = [
         "npm --workspace bridge run dev --",
         `--server ${wsOrigin.replace(/^ws/, "http")}`,
@@ -156,7 +187,9 @@ export class RuntimeTransport {
     }
     try {
       const query = new URLSearchParams({ client_token: this.bridge.client_token });
-      const res = await fetch(`/api/bridge/session/${this.bridge.session_id}?${query.toString()}`);
+      const res = await fetch(
+        this.getApiUrl(`/api/bridge/session/${this.bridge.session_id}?${query.toString()}`),
+      );
       if (!res.ok) {
         this.bridge.connected = false;
         this.persistBridge();
@@ -198,6 +231,14 @@ export class RuntimeTransport {
       "x-bridge-session-id": this.bridge.session_id,
       "x-bridge-client-token": this.bridge.client_token,
     };
+  }
+
+  getApiUrl(path: string): string {
+    return resolveApiUrl(apiBase, path);
+  }
+
+  getBridgeServerOrigin(): string {
+    return resolveBridgeServerOrigin(apiBase);
   }
 
   getRuntimeStatus(providerLlm: string): string {

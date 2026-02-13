@@ -584,7 +584,7 @@ export class ConversationEngine {
     };
 
     try {
-      const res = await fetch("/api/llm/enrich", {
+      const res = await fetch(runtimeTransport.getApiUrl("/api/llm/enrich"), {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(payload),
@@ -1044,7 +1044,7 @@ export class ConversationEngine {
     const timeout = setTimeout(() => controller.abort(), llmClientTimeoutMs);
 
     try {
-      const res = await fetch("/api/llm/respond", {
+      const res = await fetch(runtimeTransport.getApiUrl("/api/llm/respond"), {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({

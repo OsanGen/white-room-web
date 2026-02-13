@@ -40,11 +40,24 @@ Security posture:
 - Deploy client bundle only (Cloudflare Pages, itch.io)
 - Use hosted backend if available
 - If backend/provider unavailable, deterministic continuity path remains playable
+- GitHub Pages is one implementation of this mode: deploy only `client/dist` from CI.
 
 Use when:
 
 - You need zero-friction distribution
 - You can accept reduced LLM availability guarantees
+
+### Public Static + GitHub Pages (Mode C)
+
+1. Enable Pages source from this repository’s GitHub Actions or from `gh-pages` branch.
+2. Build with:
+   - `VITE_PUBLIC_BASE` set to the repository path (for example `/${repo}/`).
+   - `VITE_API_BASE_URL` set to your live API host (for example `https://api.example.com`).
+3. If `VITE_API_BASE_URL` is unset, API requests use same-origin `/api/*`, which only works when API is served from the same origin.
+
+### Important constraint
+
+- GitHub Pages hosts only static assets. LLM/STT/TTS/bridge features require a separately deployed server.
 
 ## Mode D: Release Artifact Distribution
 

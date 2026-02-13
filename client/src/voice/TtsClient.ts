@@ -5,7 +5,7 @@ export async function playTtsNonBlocking(text: string, tone: RabbitTone): Promis
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 2500);
-    const res = await fetch("/api/tts", {
+    const res = await fetch(runtimeTransport.getApiUrl("/api/tts"), {
       method: "POST",
       headers: {
         "content-type": "application/json",

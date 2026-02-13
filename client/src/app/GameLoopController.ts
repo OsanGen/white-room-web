@@ -14,6 +14,7 @@ import { DebugOverlay } from "../ui/DebugOverlay";
 import { CalmModeToggle } from "../ui/CalmModeToggle";
 import { InputController } from "../voice/InputController";
 import { playTtsNonBlocking } from "../voice/TtsClient";
+import { runtimeTransport } from "../runtime/RuntimeTransport";
 
 const balance = balanceJson as {
   session_hard_limit_ms: number;
@@ -666,7 +667,7 @@ export class GameLoopController {
 
   private async refreshHealth(): Promise<void> {
     try {
-      const res = await fetch("/api/health");
+      const res = await fetch(runtimeTransport.getApiUrl("/api/health"));
       if (!res.ok) return;
       const data = (await res.json()) as {
         providers?: {
