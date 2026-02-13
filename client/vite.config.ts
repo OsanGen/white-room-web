@@ -1,7 +1,13 @@
+import { resolve } from "node:path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
   base: process.env.VITE_PUBLIC_BASE ?? "/",
+  resolve: {
+    alias: {
+      "@white-room/shared": resolve(__dirname, "../shared/src"),
+    },
+  },
   server: {
     port: 5173,
     proxy: {
