@@ -86,6 +86,10 @@ GitHub Pages can host a playable UI instantly and can be reached by anyone throu
 - runtime API calls are configurable to a live server via `VITE_API_BASE_URL`
 - on hosted pages, API endpoints are not localhost-bound
 
+Public play link (current repo):
+
+- https://osangen.github.io/white-room-web/
+
 Quick setup:
 
 ```bash
@@ -97,9 +101,21 @@ git push
 # 2) Configure repo variable (GitHub Settings > Secrets and variables > Variables)
 VITE_API_BASE_URL=https://your-api-host.example
 
-# 3) Push to main or codex/github-push to trigger workflow
+# 3) Push to main or codex/github-push to trigger workflow.
 #    The workflow publishes client/dist to GitHub Pages.
 ```
+
+One-command bootstrap (if Pages is not enabled yet):
+
+```bash
+bash scripts/bootstrap-pages-deploy.sh
+```
+
+This script:
+
+- enables GitHub Pages for the repo in GitHub Actions mode
+- prints the published URL
+- dispatches the workflow
 
 Important note:
 

@@ -55,6 +55,12 @@ Use when:
    - `VITE_API_BASE_URL` set to your live API host (for example `https://api.example.com`).
 3. If `VITE_API_BASE_URL` is unset, API requests use same-origin `/api/*`, which only works when API is served from the same origin.
 
+Recommended quick path for this repo:
+
+- Publish link: `https://osangen.github.io/white-room-web/`
+- If GitHub Pages is disabled or misconfigured, run once:
+  - `bash scripts/bootstrap-pages-deploy.sh`
+
 ### Important constraint
 
 - GitHub Pages hosts only static assets. LLM/STT/TTS/bridge features require a separately deployed server.
