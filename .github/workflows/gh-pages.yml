@@ -35,7 +35,7 @@ jobs:
           VITE_PUBLIC_BASE: /${{ github.event.repository.name }}/
         run: |
           cd client
-          ../node_modules/.bin/vite build
+          npx --yes vite build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
