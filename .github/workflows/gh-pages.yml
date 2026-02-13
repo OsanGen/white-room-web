@@ -35,7 +35,7 @@ jobs:
           VITE_PUBLIC_BASE: /${{ github.event.repository.name }}/
         run: |
           cd client
-          npm exec --no -- vite build
+          npm run build:pages
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

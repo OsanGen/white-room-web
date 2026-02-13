@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:pages": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "lint": "tsc -p tsconfig.app.json --noEmit"
